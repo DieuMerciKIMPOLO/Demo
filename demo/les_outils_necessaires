@@ -1,0 +1,15 @@
+wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
+sudo tar -xzf postman.tar.gz -C /opt
+rm postman.tar.gz
+sudo ln -s /opt/Postman/Postman /usr/bin/postman
+
+127.0.0.1:8000/o/authorize?client_id=B1akPWQX4Zj3419VYwDF44PoThwNHI0kolkNbTXK&response_type=token&redirect_uri=http://127.0.0.1:8000/
+
+#################### NODEJS  https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04
+    sudo apt-get update
+    sudo npm install n -g
+    sudo apt-get install npm
+
+    #### UPGRADE NODEJS
+    	curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+		sudo apt-get install -y nodejs
