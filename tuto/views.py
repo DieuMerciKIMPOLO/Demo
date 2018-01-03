@@ -14,7 +14,7 @@ class ProfilutilisateurViewAdd(generics.CreateAPIView):
     """
         Creation d'un utilisateur avec un modele personnalisee
     """
-    #permission_classes = (AllowAny,)
+    permission_classes = (IsAdmin,)
     queryset = Profilutilisateur.objects.all()
     serializer_class = ProfilutilisateurSerializer
 
@@ -33,18 +33,11 @@ class ProfilutilisateurViewList(generics.ListAPIView):
     """
         Liste  des utilisateurs du modele Profilutilisateur
     """
-    #permission_classes = (AllowAny,)
+    permission_classes = (AllowAny,)
     queryset = Profilutilisateur.objects.all()
     serializer_class = ProfilutilisateurSerializer
     throttle_scope = 'anon'
 
-    #lookup_field = 'is_active'
-
-
-    #def list(self, request, **kwargs):
-    #    queryset = self.queryset.filter(is_active=kwargs["is_active"])
-    #    serializer = self.serializer_class(queryset, many=True)
-    #    return Response(serializer.data)
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-from rest_framework import permissions
+from rest_framework.permissions import *
 
 #class BasePermission(object):
 
@@ -12,4 +12,11 @@ from rest_framework import permissions
         #return True
 
 
+class IsAdmin(BasePermission):
+	"""docstring for IsAdmin"""
 
+	def has_permission(self, request, view):
+		{'error': 'vous n" avez pas le droit d" effectuer cette action'}
+		return not request.user.is_superuser==True
+
+		
