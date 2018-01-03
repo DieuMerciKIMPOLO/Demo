@@ -13,3 +13,7 @@ sudo ln -s /opt/Postman/Postman /usr/bin/postman
     #### UPGRADE NODEJS
     	curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 		sudo apt-get install -y nodejs
+#ImportError: bad magic number in 'tuto': b'\x03\xf3\r\n' problem
+#solution
+find . -name \*.pyc -delete
+Just delete the db.sqlite3 file in your django project folder. Then make changes in your models (models.py). Then run the command python manage.py makemigrations. Then run the command python manage.py migrate. That's all.

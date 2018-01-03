@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from oauth2_provider.models import AbstractApplication
 #from .manager import UserManager
+#from django.contrib.auth.models import PermissionsMixin
 import uuid
 ROLES=(
 	(1, 'Client'),
@@ -51,8 +52,14 @@ class Profilutilisateur(AbstractBaseUser):
 	USERNAME_FIELD='nom_utilisateur'
 	REQUIRED_FIELDS=['prenom','nom']
 
+	def has_perm(self, perm, obj=None):
+		return self.is_superuser
 
-	
+	def has_module_perms(self, app_label):
+		return self.is_superuser
+
+	def get_short_name(self):
+		pass
 		
 class RoleUtilisateur(models.Model):
 	id=models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
