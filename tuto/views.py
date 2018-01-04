@@ -27,13 +27,14 @@ class ProfilutilisateurViewAdd(generics.CreateAPIView):
                 data_message += P + ": " + M[0].replace(".", '')
             data_errors['error'] = data_message
             return Response(data_errors, status=status.HTTP_400_BAD_REQUEST)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        serializer.save()
+        return Response({'message':'Utilisateur cree avec succes'}, status=status.HTTP_201_CREATED)
 
 class ProfilutilisateurViewList(generics.ListAPIView):
     """
         Liste  des utilisateurs du modele Profilutilisateur
     """
-    permission_classes = (AllowAny,)
+    #permission_classes = (IsAuthenticated,)
     queryset = Profilutilisateur.objects.all()
     serializer_class = ProfilutilisateurSerializer
     throttle_scope = 'anon'
@@ -158,4 +159,31 @@ class MessagesViewList(generics.ListAPIView):
     queryset = Messages.objects.all()
     serializer_class = MessagesSerializer
 
- 
+#-----------------------------------------------------------------------------------------------------------------------------
+#from rest_framework.views import APIView
+#from rest_framework.parsers import MultiPartParser, FormParser
+#from rest_framework.response import Response
+#from rest_framework import status
+
+#from .serializers import FileSerializer
+
+#class FileView(APIView):
+
+#  parser_classes = (MultiPartParser, FormParser)
+
+#  def post(self, request, *args, **kwargs):
+
+#    file_serializer = FileSerializer(data=request.data)
+#    if file_serializer.is_valid():
+#      file_serializer.save()
+#      return Response(file_serializer.data, status=status.HTTP_201_CREATED)
+#    else:
+#      return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#from doac.contrib.rest_framework import authentication, permissions
+
+#class ExampleViewSet(viewsets.ModelViewSet):
+#    authentication_classes = [authentication.DoacAuthentication]
+#    permissions_classes = [permissions.TokenHasScope]
+#    model = ExampleModel
+    
+#    scopes = ["read", "write", "fun_stuff"]

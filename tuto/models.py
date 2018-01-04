@@ -60,6 +60,13 @@ class Profilutilisateur(AbstractBaseUser):
 
 	def get_short_name(self):
 		pass
+
+
+	#def save(self, *args, **kwargs):
+	#	self.set_password(self.password)
+	#    super(Post, self).save(*args, **kwargs)
+
+
 		
 class RoleUtilisateur(models.Model):
 	id=models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -94,8 +101,10 @@ class Messages(models.Model):
 
 
 class LesClientsOauth2(AbstractApplication):
-   logo = models.CharField(max_length=1000)
-   agree = models.CharField(max_length=1000)
+   logo = models.FileField(blank=True, null=False)
+   agree = models.TextField(max_length=1000)
 
    def allow_grant_type(self, *grant_types):
    	return bool(set(self.authorization_grant_type, self.GRANT_CLIENT_CREDENTIALS)&grant_types)
+
+    #models.CharField(max_length=1000)

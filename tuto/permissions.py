@@ -13,7 +13,7 @@ from rest_framework.permissions import *
 
 
 class IsAdmin(BasePermission):
-	"""docstring for IsAdmin"""
+	"""La permission de  IsAdmin"""
 
 	def has_permission(self, request, view):
 		{'error': 'vous n" avez pas le droit d" effectuer cette action'}

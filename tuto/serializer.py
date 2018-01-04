@@ -6,8 +6,19 @@ from tuto.models import *
 class ProfilutilisateurSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profilutilisateur
-        exclude = ('is_superuser','is_staff','is_active')
+        fields=('nom','prenom','nom_utilisateur','password')
+        #exclude = ('is_superuser','is_staff','is_active')
+    def create(self, validated_data):
+        profil = Profilutilisateur(
+            nom_utilisateur=validated_data['nom_utilisateur'],
+            nom=validated_data['nom'],
+            prenom=validated_data['prenom']
+        )
+        profil.set_password(validated_data['password'])
+        profil.save()
+        return profil
 
+        
 class ProfilutilisateurListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profilutilisateur
